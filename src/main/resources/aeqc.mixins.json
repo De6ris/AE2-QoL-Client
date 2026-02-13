@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.github.debris.aeqc.mixin",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "IMixinAbstractContainerMenu",
+    "mod.ae2.CraftConfirmScreenMixin",
+    "mod.ae2.IMixinAEBaseScreen",
+    "mod.ae2.IMixinMEStorageScreen",
+    "mod.ae2.IMixinWidgetContainer",
+    "mod.jei.IMixinBookmarkOverlay"
+  ]
+}

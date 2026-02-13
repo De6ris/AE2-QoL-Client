@@ -1,0 +1,118 @@
+import java.text.SimpleDateFormat
+
+plugins {
+    id "dev.architectury.loom" version "1.10-SNAPSHOT"
+    id "maven-publish"
+}
+
+base.archivesName = project.archives_base_name
+version = "${project.mod_version}-mc${project.minecraft_version}-" + new SimpleDateFormat("yyyyMMdd").format(new Date())
+group = project.maven_group
+
+loom {
+    silentMojangMappingsLicense()
+
+    forge {
+        mixinConfigs = ["aeqc.mixins.json"]
+    }
+}
+
+//runClient {
+//    args("--username", "De6ris")
+//}
+
+repositories {
+    maven { url = "https://api.modrinth.com/maven" }
+    maven { url = "https://www.cursemaven.com" }
+    maven { url = "https://www.jitpack.io" }
+    maven { url = "https://maven.blamejared.com/" }
+    maven { url = "https://dvs1.progwml6.com/files/maven/" }
+    maven { url = "https://modmaven.dev/" }
+    maven { url = "https://maven.tterrag.com/" }
+    maven { url = "https://raw.githubusercontent.com/tom5454/maven/main" }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings loom.officialMojangMappings()
+    forge "net.minecraftforge:forge:${project.forge_version}"
+
+    implementation(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
+//    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.4.1")) {
+//        jarJar.ranged(it, "[0.2.0,)")
+//    }
+    implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
+
+    modImplementation "maven.modrinth:mafglib:${project.malilib_version}"
+
+    // ae2
+    modImplementation "appeng:appliedenergistics2-forge:${ae2_version}"
+    modImplementation "org.appliedenergistics:guideme:${guideme_version}"
+
+    // extendedAE
+    modImplementation "curse.maven:glodium-957920:${glodium_version}"
+    modImplementation "curse.maven:ex-pattern-provider-892005:7005572"
+
+    // ae2wt
+    modCompileOnly "curse.maven:applied-energistics-2-wireless-terminals-459929:${wireless_terminals_version}"
+
+    // jei
+    modCompileOnly "mezz.jei:jei-${minecraft_version}-forge:${jei_version}"
+    modRuntimeOnly "mezz.jei:jei-${minecraft_version}-forge:${jei_version}"
+//    modImplementation "mezz.jei:jei-${minecraft_version}-forge:${jei_version}"
+
+    // tom
+    modImplementation "com.tom5454.toms_storage:TomsStorage-120:${tom_version}"
+
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("META-INF/mods.toml") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+    options.release = 17
+    options.deprecation = false
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+
+    withSourcesJar()
+}
+
+jar {
+    // add some additional metadata to the jar manifest
+    manifest {
+        attributes(["Specification-Title"     : project.mod_id,
+                    "Specification-Vendor"    : project.mod_author,
+                    "Specification-Version"   : "1",
+                    "Implementation-Title"    : project.name,
+                    "Implementation-Version"  : version,
+                    "Implementation-Vendor"   : project.mod_author,
+                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")])
+    }
+}
+
+// configure the maven publication
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
+        // Notice: This block does NOT have the same function as the block in the top level.
+        // The repositories here will be used for publishing your artifact, not for
+        // retrieving dependencies.
+    }
+}

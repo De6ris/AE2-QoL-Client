@@ -1,0 +1,50 @@
+modLoader = "javafml"
+loaderVersion = "[46,)"
+license = "LGPLv3"
+
+[[mods]]
+modId = "aeqc"
+version = "${version}"
+displayName = "AE2 QoL Client"
+displayURL="" #optional
+logoFile="icon.png" #optional
+credits="masa" #optional
+authors="Debris" #optional
+description = '''
+Add qol features to ae2
+'''
+
+[[dependencies.aeqc]]
+modId = "forge"
+mandatory = true
+versionRange = "[46,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.aeqc]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20,)"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.aeqc]]
+modId = "mafglib"
+mandatory = true
+versionRange = "*"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.aeqc]]
+modId = "jei"
+mandatory = true
+versionRange = "*"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.aeqc]]
+modId = "ae2"
+mandatory = true
+versionRange = "*"
+ordering = "NONE"
+side = "CLIENT"
