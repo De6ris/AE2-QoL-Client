@@ -58,4 +58,8 @@ public class ConfigFactory {
     static ConfigBooleanHotkeyed ofBooleanHotkeyed(String name, boolean defaultValue, String defaultKey, KeybindSettings settings, String comment) {
         return new ConfigBooleanHotkeyed(name, defaultValue, defaultKey, settings, comment, name);
     }
+
+    static ConfigString ofString(String name, String defaultValue) {
+        return new ConfigString(name, defaultValue, DEFAULT_COMMENT);
+    }
 }

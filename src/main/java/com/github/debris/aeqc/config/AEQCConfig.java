@@ -10,6 +10,7 @@ import fi.dy.masa.malilib.config.IConfigBase;
 import fi.dy.masa.malilib.config.IConfigHandler;
 import fi.dy.masa.malilib.config.options.ConfigBoolean;
 import fi.dy.masa.malilib.config.options.ConfigHotkey;
+import fi.dy.masa.malilib.config.options.ConfigString;
 import fi.dy.masa.malilib.hotkeys.IHotkey;
 import fi.dy.masa.malilib.hotkeys.KeybindSettings;
 import fi.dy.masa.malilib.util.JsonUtils;
@@ -19,14 +20,15 @@ import java.nio.file.Path;
 import java.util.List;
 
 import static com.github.debris.aeqc.AEQC.MOD_NAME;
-import static com.github.debris.aeqc.config.ConfigFactory.ofBoolean;
-import static com.github.debris.aeqc.config.ConfigFactory.ofHotkey;
+import static com.github.debris.aeqc.config.ConfigFactory.*;
 
 public class AEQCConfig implements IConfigHandler {
     public static final AEQCConfig INSTANCE = new AEQCConfig();
     private static final Path FILE_PATH = Platform.getConfigDir().resolve(AEQC.MOD_ID + ".json");
 
     // value
+    public static final ConfigBoolean PatternPlaceHolder = ofBoolean("样板占位符", true);
+    public static final ConfigString PlaceHolderItem = ofString("占位符物品", "minecraft:paper");
     public static final ConfigBoolean DebugMode = ofBoolean("调试模式", false);
 
 
@@ -81,7 +83,7 @@ public class AEQCConfig implements IConfigHandler {
     }
 
     static {
-        Values = ImmutableList.of(DebugMode);
+        Values = ImmutableList.of(PatternPlaceHolder, PlaceHolderItem, DebugMode);
         Compat = getCompat();
         Hotkey = ImmutableList.of(OpenConfigUI, FastSearch, FastAutoCraftGui, FastAutoCraftBlock, ClearSearch);
 

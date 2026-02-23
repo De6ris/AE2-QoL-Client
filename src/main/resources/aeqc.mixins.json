@@ -6,6 +6,7 @@
   "client": [
     "IMixinAbstractContainerMenu",
     "mod.ae2.CraftConfirmScreenMixin",
+    "mod.ae2.EncodePatternTransferHandlerMixin",
     "mod.ae2.IMixinAEBaseScreen",
     "mod.ae2.IMixinMEStorageScreen",
     "mod.ae2.IMixinWidgetContainer",
