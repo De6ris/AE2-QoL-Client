@@ -5,8 +5,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
 public class ItemUtil {
-    @SuppressWarnings("deprecation")
     public static Item parseItem(String string) {
-        return BuiltInRegistries.ITEM.get(ResourceLocation.parse(string));
+        return parseItem(ResourceLocation.parse(string));
+    }
+
+    @SuppressWarnings("deprecation")
+    public static Item parseItem(ResourceLocation identifier) {
+        return BuiltInRegistries.ITEM.get(identifier);
     }
 }

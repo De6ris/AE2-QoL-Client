@@ -1,6 +1,7 @@
 package com.github.debris.aeqc.config;
 
 import com.github.debris.aeqc.AEQC;
+import com.github.debris.aeqc.reference.ModReference;
 import com.github.debris.aeqc.util.Platform;
 import com.google.common.collect.ImmutableList;
 import com.google.gson.JsonElement;
@@ -27,12 +28,13 @@ public class AEQCConfig implements IConfigHandler {
     private static final Path FILE_PATH = Platform.getConfigDir().resolve(AEQC.MOD_ID + ".json");
 
     // value
-    public static final ConfigBoolean PatternPlaceHolder = ofBoolean("样板占位符", true);
+    public static final ConfigBoolean PatternPlaceHolder = ofBoolean("样板占位符", true, "假合成");
     public static final ConfigString PlaceHolderItem = ofString("占位符物品", "minecraft:paper");
     public static final ConfigBoolean DebugMode = ofBoolean("调试模式", false);
 
 
     // compat
+    public static final ConfigBoolean GTConvertMoltenAlloy = ofBoolean("GT转化熔融合金", true, "对应的锭");
 
 
     // hotkey
@@ -79,6 +81,7 @@ public class AEQCConfig implements IConfigHandler {
 
     private static ImmutableList<IConfigBase> getCompat() {
         ImmutableList.Builder<IConfigBase> builder = ImmutableList.builder();
+        if (ModReference.has(ModReference.GTCEU)) builder.add(GTConvertMoltenAlloy);
         return builder.build();
     }
 

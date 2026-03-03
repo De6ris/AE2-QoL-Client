@@ -2,11 +2,11 @@ package com.github.debris.aeqc.mixin.mod.ae2;
 
 import appeng.api.stacks.GenericStack;
 import appeng.integration.modules.jei.transfer.EncodePatternTransferHandler;
-import com.github.debris.aeqc.config.AEQCConfig;
-import com.github.debris.aeqc.feat.PatternPlaceHolder;
+import com.github.debris.aeqc.feat.PatternTweaks;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
+import net.minecraft.world.item.crafting.Recipe;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -20,9 +20,7 @@ public class EncodePatternTransferHandlerMixin {
             at = @At(value = "INVOKE", target = "Lappeng/integration/modules/jei/GenericEntryStackHelper;ofOutputs(Lmezz/jei/api/gui/ingredient/IRecipeSlotsView;)Ljava/util/List;", remap = false),
             remap = false
     )
-    private List<GenericStack> addOutput(List<GenericStack> original, @Local(argsOnly = true) IRecipeSlotsView slotsView) {
-        if (!original.isEmpty()) return original;
-        if (!AEQCConfig.PatternPlaceHolder.getBooleanValue()) return original;
-        return PatternPlaceHolder.createOutput(slotsView);
+    private List<GenericStack> tweakOutput(List<GenericStack> original, @Local(name = "recipe") Recipe<?> recipe, @Local(argsOnly = true) IRecipeSlotsView slotsView) {
+        return PatternTweaks.onTransfer(original, recipe, slotsView);
     }
 }
