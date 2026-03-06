@@ -12,6 +12,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class PatternTweaks {
+    public static boolean SKIP_MERGING = true;
+
     public static List<GenericStack> onTransfer(List<GenericStack> original, @Nullable Recipe<?> recipe, IRecipeSlotsView slotsView) {
         if (AEQCConfig.PatternPlaceHolder.getBooleanValue() && original.isEmpty()) {
             return PatternPlaceHolder.createOutput(slotsView);
