@@ -30,6 +30,7 @@ public class AEQCConfig implements IConfigHandler {
     // value
     public static final ConfigBoolean PatternPlaceHolder = ofBoolean("样板占位符", true, "假合成");
     public static final ConfigString PlaceHolderItem = ofString("占位符物品", "minecraft:paper");
+    public static final ConfigBoolean AutoBlankPatternRestock = ofBoolean("自动补充空白样板", true, "样板编码终端");
     public static final ConfigBoolean DebugMode = ofBoolean("调试模式", false);
 
 
@@ -45,6 +46,8 @@ public class AEQCConfig implements IConfigHandler {
     public static final ConfigHotkey FastAutoCraftBlock = ofHotkey("快速下单方块", "LEFT_CONTROL,BUTTON_3", KeybindSettings.DEFAULT);
     public static final ConfigHotkey ClearSearch = ofHotkey("清空搜索", "C", KeybindSettings.GUI);
     public static final ConfigHotkey ModifierSkipPatternMerging = ofHotkey("跳过样板自动合并", "LEFT_CONTROL", KeybindSettings.MODIFIER_GUI, "保留样板堆叠为jei中原状\n用于GT装配线等");
+    public static final ConfigHotkey FastPullOne = ofHotkey("快速拉取一个物品", "HOME", KeybindSettings.GUI);
+    public static final ConfigHotkey FastPullStack = ofHotkey("快速拉取一组物品", "END", KeybindSettings.GUI);
 
     public static final List<IConfigBase> ALL_CONFIGS;
 
@@ -87,9 +90,23 @@ public class AEQCConfig implements IConfigHandler {
     }
 
     static {
-        Values = ImmutableList.of(PatternPlaceHolder, PlaceHolderItem, DebugMode);
+        Values = ImmutableList.of(
+                PatternPlaceHolder,
+                PlaceHolderItem,
+                AutoBlankPatternRestock,
+                DebugMode
+        );
         Compat = getCompat();
-        Hotkey = ImmutableList.of(OpenConfigUI, FastSearch, FastAutoCraftGui, FastAutoCraftBlock, ClearSearch, ModifierSkipPatternMerging);
+        Hotkey = ImmutableList.of(
+                OpenConfigUI,
+                FastSearch,
+                FastAutoCraftGui,
+                FastAutoCraftBlock,
+                ClearSearch,
+                ModifierSkipPatternMerging,
+                FastPullOne,
+                FastPullStack
+        );
 
         ImmutableList.Builder<IConfigBase> builder = ImmutableList.builder();
         ALL_CONFIGS = builder.addAll(Values).addAll(Compat).addAll(Hotkey).build();

@@ -17,5 +17,8 @@ public class Callbacks {
         AEQCConfig.FastAutoCraftBlock.getKeybind().setCallback(((keyAction, iKeybind) -> FastAutoCraft.onKeyBlock(client)));
 
         AEQCConfig.ClearSearch.getKeybind().setCallback((keyAction, iKeybind) -> SearchTweaks.clear(client));
+
+        AEQCConfig.FastPullOne.getKeybind().setCallback((keyAction, iKeybind) -> FastPull.pullHovered(client, FastPull.Type.ONE));
+        AEQCConfig.FastPullStack.getKeybind().setCallback((keyAction, iKeybind) -> FastPull.pullHovered(client, FastPull.Type.STACK));
     }
 }

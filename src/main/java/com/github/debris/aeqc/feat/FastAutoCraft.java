@@ -11,6 +11,7 @@ import appeng.core.sync.network.NetworkHandler;
 import appeng.core.sync.packets.HotkeyPacket;
 import appeng.helpers.InventoryAction;
 import appeng.menu.me.common.GridInventoryEntry;
+import com.github.debris.aeqc.util.AE2Util;
 import com.github.debris.aeqc.util.AccessUtil;
 import com.github.debris.aeqc.util.JeiUtil;
 import net.minecraft.client.Minecraft;
@@ -58,30 +59,24 @@ public class FastAutoCraft {
 
         AEKey key = genericStack.what();
 
-        TaskQueue.schedule(
-                client_ -> {
-                    if (client_.screen instanceof MEStorageScreen<?> screen) {
-                        autoCraft(screen, key);
-                        return true;
-                    }
-                    return false;
-                },
-                5
-        );
+        TaskQueue.schedule(getAutoCraftTask(key), 5);
 
         return true;
     }
 
+    private static Task getAutoCraftTask(AEKey key) {
+        return client -> {
+            if (client.screen instanceof MEStorageScreen<?> screen && ContainerReady.isReady(screen)) {
+                autoCraft(screen, key);
+                return true;
+            }
+            return false;
+        };
+    }
+
     private static boolean autoCraft(MEStorageScreen<?> screen, AEKey key) {
         Repo repo = AccessUtil.getRepo(screen);
-        Optional<GridInventoryEntry> optional = repo.getAllEntries().stream()
-                .filter(GridInventoryEntry::isCraftable)
-                .filter(entry -> {
-                    AEKey what = entry.getWhat();
-                    if (what == null) return false;
-                    return what.equals(key);
-                })
-                .findFirst();
+        Optional<GridInventoryEntry> optional = AE2Util.findEntry(repo, key, GridInventoryEntry::isCraftable);
         if (optional.isPresent()) {
             long serial = optional.get().getSerial();
             screen.getMenu().handleInteraction(serial, InventoryAction.AUTO_CRAFT);

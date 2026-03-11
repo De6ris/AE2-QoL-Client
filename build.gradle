@@ -17,10 +17,6 @@ loom {
     }
 }
 
-//runClient {
-//    args("--username", "De6ris")
-//}
-
 repositories {
     maven { url = "https://api.modrinth.com/maven" }
     maven { url = "https://www.cursemaven.com" }
@@ -62,13 +58,13 @@ dependencies {
 //    modImplementation "mezz.jei:jei-${minecraft_version}-forge:${jei_version}"
 
     // tom
-    modImplementation "com.tom5454.toms_storage:TomsStorage-120:${tom_version}"
+    modCompileOnly "com.tom5454.toms_storage:TomsStorage-120:${tom_version}"
 
     // gtceu
-    modImplementation "curse.maven:gregtechceu-modern-890405:${gregtech_version}"
-    modImplementation "curse.maven:ldlib-626676:${ldlib_version}"
-    modImplementation "curse.maven:configuration-444699:4710266"
-    modImplementation "com.tterrag.registrate:Registrate:MC1.20-1.3.11"
+    modCompileOnly "curse.maven:gregtechceu-modern-890405:${gregtech_version}"
+//    modImplementation "curse.maven:ldlib-626676:${ldlib_version}"
+//    modImplementation "curse.maven:configuration-444699:4710266"
+//    modImplementation "com.tterrag.registrate:Registrate:MC1.20-1.3.11"
 }
 
 processResources {
@@ -103,6 +99,10 @@ jar {
                     "Implementation-Vendor"   : project.mod_author,
                     "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")])
     }
+}
+
+tasks.named('runClient', JavaExec).configure { exec ->
+    exec.setArgs(['--username', project.property('user_name'), '--session', '0', '--width', '854', '--height', '480'])
 }
 
 // configure the maven publication

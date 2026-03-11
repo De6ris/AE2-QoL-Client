@@ -4,6 +4,7 @@
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_17",
   "client": [
+    "ClientPacketListenerMixin",
     "IMixinAbstractContainerMenu",
     "mod.ae2.CraftConfirmScreenMixin",
     "mod.ae2.EncodePatternTransferHandlerMixin",

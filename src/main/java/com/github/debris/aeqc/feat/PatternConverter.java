@@ -17,6 +17,7 @@ import net.minecraft.world.level.material.Fluid;
 import java.util.List;
 
 public class PatternConverter {
+    @SuppressWarnings("deprecation")
     public static List<GenericStack> convertMoltenAlloyToIngot(List<GenericStack> original) {
         if (original.size() != 1) return original;
         GenericStack stack = original.get(0);
