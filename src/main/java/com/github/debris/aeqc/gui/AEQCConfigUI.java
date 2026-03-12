@@ -47,7 +47,7 @@ public class AEQCConfigUI extends GuiConfigsBase {
 
         configs = switch (tab) {
             case VALUE -> AEQCConfig.Values;
-            case COMPAT -> AEQCConfig.Compat;
+            case INTEGRATION -> AEQCConfig.Integration;
             case HOTKEY -> AEQCConfig.Hotkey;
             default -> AEQCConfig.ALL_CONFIGS;
         };
@@ -69,7 +69,7 @@ public class AEQCConfigUI extends GuiConfigsBase {
     public enum Tab {
         ALL("全部"),
         VALUE("值"),
-        COMPAT("兼容"),
+        INTEGRATION("联动"),
         HOTKEY("热键"),
         ;
 

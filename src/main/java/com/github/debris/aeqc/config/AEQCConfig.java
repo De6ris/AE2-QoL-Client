@@ -34,8 +34,9 @@ public class AEQCConfig implements IConfigHandler {
     public static final ConfigBoolean DebugMode = ofBoolean("调试模式", false);
 
 
-    // compat
+    // integration
     public static final ConfigBoolean GTConvertMoltenAlloy = ofBoolean("GT转化熔融合金", true, "对应的锭");
+    public static final ConfigBoolean GTConvertHotIngot = ofBoolean("GT转化热锭", true, "对应的锭");
 
 
     // hotkey
@@ -53,7 +54,7 @@ public class AEQCConfig implements IConfigHandler {
 
 
     public static final ImmutableList<IConfigBase> Values;
-    public static final ImmutableList<IConfigBase> Compat;
+    public static final ImmutableList<IConfigBase> Integration;
     public static final ImmutableList<IHotkey> Hotkey;
 
 
@@ -83,9 +84,9 @@ public class AEQCConfig implements IConfigHandler {
         }
     }
 
-    private static ImmutableList<IConfigBase> getCompat() {
+    private static ImmutableList<IConfigBase> getIntegration() {
         ImmutableList.Builder<IConfigBase> builder = ImmutableList.builder();
-        if (ModReference.has(ModReference.GTCEU)) builder.add(GTConvertMoltenAlloy);
+        if (ModReference.has(ModReference.GTCEU)) builder.add(GTConvertMoltenAlloy, GTConvertHotIngot);
         return builder.build();
     }
 
@@ -96,7 +97,7 @@ public class AEQCConfig implements IConfigHandler {
                 AutoBlankPatternRestock,
                 DebugMode
         );
-        Compat = getCompat();
+        Integration = getIntegration();
         Hotkey = ImmutableList.of(
                 OpenConfigUI,
                 FastSearch,
@@ -109,7 +110,7 @@ public class AEQCConfig implements IConfigHandler {
         );
 
         ImmutableList.Builder<IConfigBase> builder = ImmutableList.builder();
-        ALL_CONFIGS = builder.addAll(Values).addAll(Compat).addAll(Hotkey).build();
+        ALL_CONFIGS = builder.addAll(Values).addAll(Integration).addAll(Hotkey).build();
     }
 
 }
