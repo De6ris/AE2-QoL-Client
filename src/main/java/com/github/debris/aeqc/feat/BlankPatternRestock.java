@@ -8,7 +8,6 @@ import appeng.menu.me.common.GridInventoryEntry;
 import appeng.menu.me.items.PatternEncodingTermMenu;
 import com.github.debris.aeqc.util.AE2Util;
 import com.github.debris.aeqc.util.InventoryUtil;
-import com.github.debris.aeqc.util.ItemUtil;
 import net.minecraft.world.inventory.Slot;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public class BlankPatternRestock {
         if (slots.size() != 1) return;
         Slot slot = slots.get(0);
 
-        if (slot.hasItem() && ItemUtil.isFullStack(slot.getItem())) return;
+        if (slot.hasItem() && slot.getItem().getCount() >= 32) return;
 
         Optional<GridInventoryEntry> optional = AE2Util.findEntry(menu.getClientRepo(), AEItemKey.of(AEItems.BLANK_PATTERN));
         if (optional.isEmpty()) return;
@@ -30,6 +29,9 @@ public class BlankPatternRestock {
 
         menu.handleInteraction(entry.getSerial(), InventoryAction.PICKUP_OR_SET_DOWN);
         InventoryUtil.leftClick(slot);
-        menu.handleInteraction(entry.getSerial(), InventoryAction.PICKUP_OR_SET_DOWN);
+
+        if (InventoryUtil.isHoldingItem() && AEItems.BLANK_PATTERN.isSameAs(InventoryUtil.getHeldStack())) {
+            menu.handleInteraction(entry.getSerial(), InventoryAction.PICKUP_OR_SET_DOWN);
+        }
     }
 }

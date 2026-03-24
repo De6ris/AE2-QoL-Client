@@ -50,24 +50,22 @@ public class FastPull {
             menu.handleInteraction(entry.getSerial(), InventoryAction.SHIFT_CLICK);
         } else {
             menu.handleInteraction(entry.getSerial(), InventoryAction.PICKUP_SINGLE);
-            TaskQueue.schedule(getClearCursorTask(), 5);
+            TaskQueue.schedule(FastPull::clearCursor, 5);
         }
     }
 
-    private static Task getClearCursorTask() {
-        return client -> {
-            if (!(client.screen instanceof MEStorageScreen<?> screen)) {
-                // quit task
-                return true;
-            }
-            if (!InventoryUtil.isHoldingItem()) {
-                // wait for sync
-                return false;
-            }
-            boolean cleared = InventoryTweaks.clearCursor(screen.getMenu().getSlots(SlotSemantics.PLAYER_HOTBAR));
-            if (!cleared) InventoryTweaks.clearCursor(screen.getMenu().getSlots(SlotSemantics.PLAYER_INVENTORY));
+    private static boolean clearCursor(Minecraft client) {
+        if (!(client.screen instanceof MEStorageScreen<?> screen)) {
+            // quit task
             return true;
-        };
+        }
+        if (!InventoryUtil.isHoldingItem()) {
+            // wait for sync
+            return false;
+        }
+        boolean cleared = InventoryTweaks.clearCursor(screen.getMenu().getSlots(SlotSemantics.PLAYER_HOTBAR));
+        if (!cleared) InventoryTweaks.clearCursor(screen.getMenu().getSlots(SlotSemantics.PLAYER_INVENTORY));
+        return true;
     }
 
     private static boolean handleNoStock(GridInventoryEntry entry, MEStorageMenu menu) {
