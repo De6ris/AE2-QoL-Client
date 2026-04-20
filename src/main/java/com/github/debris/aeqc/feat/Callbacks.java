@@ -14,7 +14,6 @@ public class Callbacks {
         AEQCConfig.FastSearch.getKeybind().setCallback((keyAction, iKeybind) -> SearchTweaks.searchHovered(client));
 
         AEQCConfig.FastAutoCraftGui.getKeybind().setCallback(((keyAction, iKeybind) -> FastAutoCraft.onKeyGui(client)));
-        AEQCConfig.FastAutoCraftBlock.getKeybind().setCallback(((keyAction, iKeybind) -> FastAutoCraft.onKeyBlock(client)));
 
         AEQCConfig.ClearSearch.getKeybind().setCallback((keyAction, iKeybind) -> SearchTweaks.clear(client));
 

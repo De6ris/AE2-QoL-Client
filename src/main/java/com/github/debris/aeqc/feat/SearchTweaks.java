@@ -49,7 +49,7 @@ public class SearchTweaks {
         return action.apply(textField);
     }
 
-    @SuppressWarnings({"deprecation", "RedundantIfStatement"})
+    @SuppressWarnings("RedundantIfStatement")
     @Nullable
     private static EditBox findTextField(AbstractContainerScreen<?> screen) {
         MenuType<?> menuType = AccessUtil.getMenuType(screen.getMenu());
@@ -85,7 +85,8 @@ public class SearchTweaks {
 
 
         if (ExtendedAEReference.PatternAccessTerminals.stream().anyMatch(x -> x.equals(key))) {
-            return widgets.get("search_out");
+//            return widgets.get("search_out");// 1.20.1
+            return widgets.get("search");
         }
 
         return null;

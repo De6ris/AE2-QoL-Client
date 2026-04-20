@@ -8,7 +8,9 @@ import com.github.debris.aeqc.mixin.IMixinAbstractContainerMenu;
 import com.github.debris.aeqc.mixin.mod.ae2.IMixinAEBaseScreen;
 import com.github.debris.aeqc.mixin.mod.ae2.IMixinMEStorageScreen;
 import com.github.debris.aeqc.mixin.mod.ae2.IMixinWidgetContainer;
+import com.github.debris.aeqc.mixin.mod.jei.IMixinBookmarkList;
 import com.github.debris.aeqc.mixin.mod.jei.IMixinBookmarkOverlay;
+import mezz.jei.gui.bookmarks.BookmarkFactory;
 import mezz.jei.gui.bookmarks.BookmarkList;
 import mezz.jei.gui.overlay.bookmarks.BookmarkOverlay;
 import net.minecraft.client.gui.components.AbstractWidget;
@@ -38,5 +40,9 @@ public class AccessUtil {
     @Nullable
     public static MenuType<?> getMenuType(AbstractContainerMenu menu) {
         return ((IMixinAbstractContainerMenu) menu).getMenuType();
+    }
+
+    public static BookmarkFactory getBookmarkFactory(BookmarkList bookmarkList) {
+        return ((IMixinBookmarkList) bookmarkList).getBookmarkFactory();
     }
 }

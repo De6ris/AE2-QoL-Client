@@ -2,22 +2,25 @@ package com.github.debris.aeqc.feat;
 
 import appeng.api.stacks.AEKey;
 import appeng.api.stacks.GenericStack;
-import appeng.integration.modules.jei.GenericEntryStackHelper;
+import appeng.client.gui.StackWithBounds;
 import appeng.menu.me.crafting.CraftConfirmMenu;
 import appeng.menu.me.crafting.CraftingPlanSummary;
 import appeng.menu.me.crafting.CraftingPlanSummaryEntry;
 import com.github.debris.aeqc.util.AccessUtil;
 import com.github.debris.aeqc.util.JeiUtil;
-import mezz.jei.api.ingredients.ITypedIngredient;
 import mezz.jei.api.runtime.IBookmarkOverlay;
+import mezz.jei.api.runtime.IClickableIngredient;
 import mezz.jei.api.runtime.IIngredientManager;
 import mezz.jei.gui.bookmarks.BookmarkList;
-import mezz.jei.gui.bookmarks.IngredientBookmark;
 import mezz.jei.gui.overlay.bookmarks.BookmarkOverlay;
+import net.minecraft.client.renderer.Rect2i;
+import tamaized.ae2jeiintegration.integration.modules.jei.GenericEntryStackHelper;
 
 import java.util.List;
 
 public class BookmarkMissing {
+    private static final Rect2i EMPTY = new Rect2i(0, 0, 0, 0);
+
     public static void onClick(CraftConfirmMenu menu) {
         CraftingPlanSummary plan = menu.getPlan();
         if (plan == null) return;
@@ -34,11 +37,11 @@ public class BookmarkMissing {
     }
 
     private static void bookmark(BookmarkList bookmarkList, IIngredientManager ingredientManager, AEKey what) {
-        ITypedIngredient<?> iTypedIngredient = GenericEntryStackHelper.stackToIngredient(
+        IClickableIngredient<?> iClickableIngredient = GenericEntryStackHelper.stackToClickableIngredient(
                 ingredientManager,
-                new GenericStack(what, 1)
+                new StackWithBounds(new GenericStack(what, 1), EMPTY)
         );
-        if (iTypedIngredient == null) return;
-        bookmarkList.add(IngredientBookmark.create(iTypedIngredient, ingredientManager));
+        if (iClickableIngredient == null) return;
+        bookmarkList.add(AccessUtil.getBookmarkFactory(bookmarkList).create(iClickableIngredient.getTypedIngredient()));
     }
 }

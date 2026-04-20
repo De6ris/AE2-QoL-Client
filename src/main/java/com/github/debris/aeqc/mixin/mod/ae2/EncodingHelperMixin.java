@@ -1,7 +1,7 @@
 package com.github.debris.aeqc.mixin.mod.ae2;
 
 import appeng.api.stacks.GenericStack;
-import appeng.integration.modules.jeirei.EncodingHelper;
+import appeng.integration.modules.itemlists.EncodingHelper;
 import com.github.debris.aeqc.feat.PatternTweaks;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -16,7 +16,7 @@ public class EncodingHelperMixin {
             method = "encodeBestMatchingStacksIntoSlots",
             at = @At(
                     value = "INVOKE",
-                    target = "Lappeng/integration/modules/jeirei/EncodingHelper;addOrMerge(Ljava/util/List;Lappeng/api/stacks/GenericStack;)V",
+                    target = "Lappeng/integration/modules/itemlists/EncodingHelper;addOrMerge(Ljava/util/List;Lappeng/api/stacks/GenericStack;)V",
                     remap = false
             ),
             remap = false

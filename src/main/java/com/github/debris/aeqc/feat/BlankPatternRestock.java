@@ -30,7 +30,7 @@ public class BlankPatternRestock {
         menu.handleInteraction(entry.getSerial(), InventoryAction.PICKUP_OR_SET_DOWN);
         InventoryUtil.leftClick(slot);
 
-        if (InventoryUtil.isHoldingItem() && AEItems.BLANK_PATTERN.isSameAs(InventoryUtil.getHeldStack())) {
+        if (InventoryUtil.isHoldingItem() && AEItems.BLANK_PATTERN.is(InventoryUtil.getHeldStack())) {
             menu.handleInteraction(entry.getSerial(), InventoryAction.PICKUP_OR_SET_DOWN);
         }
     }

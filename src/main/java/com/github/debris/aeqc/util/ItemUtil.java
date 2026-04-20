@@ -10,7 +10,6 @@ public class ItemUtil {
         return parseItem(ResourceLocation.parse(string));
     }
 
-    @SuppressWarnings("deprecation")
     public static Item parseItem(ResourceLocation identifier) {
         return BuiltInRegistries.ITEM.get(identifier);
     }
@@ -21,6 +20,6 @@ public class ItemUtil {
 
     public static boolean canMerge(ItemStack to, ItemStack from) {
         if (isFullStack(to)) return false;
-        return ItemStack.isSameItemSameTags(to, from);
+        return ItemStack.isSameItemSameComponents(to, from);
     }
 }

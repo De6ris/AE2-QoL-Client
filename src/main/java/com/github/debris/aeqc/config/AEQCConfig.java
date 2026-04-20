@@ -44,7 +44,6 @@ public class AEQCConfig implements IConfigHandler {
 
     public static final ConfigHotkey FastSearch = ofHotkey("快速搜索", "F", KeybindSettings.GUI);
     public static final ConfigHotkey FastAutoCraftGui = ofHotkey("快速下单", "BUTTON_3", KeybindSettings.GUI);
-    public static final ConfigHotkey FastAutoCraftBlock = ofHotkey("快速下单方块", "LEFT_CONTROL,BUTTON_3", KeybindSettings.DEFAULT);
     public static final ConfigHotkey ClearSearch = ofHotkey("清空搜索", "C", KeybindSettings.GUI);
     public static final ConfigHotkey ModifierSkipPatternMerging = ofHotkey("跳过样板自动合并", "LEFT_CONTROL", KeybindSettings.MODIFIER_GUI, "保留样板堆叠为jei中原状\n用于GT装配线等");
     public static final ConfigHotkey FastPullOne = ofHotkey("快速拉取一个物品", "HOME", KeybindSettings.GUI);
@@ -102,7 +101,6 @@ public class AEQCConfig implements IConfigHandler {
                 OpenConfigUI,
                 FastSearch,
                 FastAutoCraftGui,
-                FastAutoCraftBlock,
                 ClearSearch,
                 ModifierSkipPatternMerging,
                 FastPullOne,

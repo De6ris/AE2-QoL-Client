@@ -12,7 +12,8 @@
     "mod.ae2.IMixinAEBaseScreen",
     "mod.ae2.IMixinMEStorageScreen",
     "mod.ae2.IMixinWidgetContainer",
+    "mod.jei.IMixinBookmarkList",
     "mod.jei.IMixinBookmarkOverlay",
-    "mod.jei.RecipeTransferButtonMixin"
+    "mod.jei.RecipeTransferButtonControllerMixin"
   ]
 }

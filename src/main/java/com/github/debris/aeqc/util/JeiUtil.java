@@ -1,10 +1,10 @@
 package com.github.debris.aeqc.util;
 
 import appeng.api.stacks.GenericStack;
-import appeng.integration.modules.jei.GenericEntryStackHelper;
 import mezz.jei.api.ingredients.ITypedIngredient;
 import mezz.jei.api.runtime.IJeiRuntime;
 import org.jetbrains.annotations.Nullable;
+import tamaized.ae2jeiintegration.integration.modules.jei.GenericEntryStackHelper;
 
 public class JeiUtil {
     public static IJeiRuntime jeiRuntime;
