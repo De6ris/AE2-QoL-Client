@@ -11,7 +11,7 @@ logoFile="icon.png" #optional
 credits="masa" #optional
 authors="Debris" #optional
 description = '''
-Add qol features to ae2
+Add qol features to the integration between ae2 and jei
 '''
 
 [[mixins]]
@@ -47,6 +47,13 @@ side = "CLIENT"
 
 [[dependencies.aeqc]]
 modId = "ae2"
+type = "required"
+versionRange = "*"
+ordering = "NONE"
+side = "CLIENT"
+
+[[dependencies.aeqc]]
+modId = "ae2jeiintegration"
 type = "required"
 versionRange = "*"
 ordering = "NONE"

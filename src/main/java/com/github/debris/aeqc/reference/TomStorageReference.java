@@ -8,7 +8,7 @@ import java.util.List;
 public class TomStorageReference {
     public static final List<ResourceLocation> Terminals =
             List.of(
-                    Platform.identifier(ModReference.TomStorage, "ts.storage_terminal.container"),
-                    Platform.identifier(ModReference.TomStorage, "ts.crafting_terminal.container")
+                    Platform.identifier(ModReference.TomStorage, "storage_terminal"),
+                    Platform.identifier(ModReference.TomStorage, "crafting_terminal")
             );
 }

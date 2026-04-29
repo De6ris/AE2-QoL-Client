@@ -1,11 +1,9 @@
-import java.text.SimpleDateFormat
-
 plugins {
     alias(libs.plugins.architectury.loom)
 }
 
-base.archivesName = libs.versions.archives.name
-version = "${libs.versions.version.get()}-mc${libs.versions.minecraft.version.get()}-${new SimpleDateFormat("yyyyMMdd").format(new Date())}"
+base.archivesName = "${libs.versions.archives.name.get()}-mc${libs.versions.minecraft.version.get()}"
+version = libs.versions.version.get()
 group = libs.versions.maven.group
 
 repositories {
@@ -40,6 +38,9 @@ dependencies {
 
     // ae2wt
     modCompileOnly libs.ae2wt
+
+    // tom
+    modCompileOnly libs.toms.storage
 }
 
 processResources {
@@ -64,4 +65,12 @@ java {
 
 tasks.named('runClient', JavaExec).configure { exec ->
     exec.setArgs(['--username', project.property('user_name'), '--session', '0', '--width', '854', '--height', '480'])
+}
+
+jar {
+    inputs.property "archivesName", project.base.archivesName
+
+    from("LICENSE") {
+        rename { "${it}_${inputs.properties.archivesName}" }
+    }
 }

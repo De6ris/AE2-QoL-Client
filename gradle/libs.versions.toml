@@ -3,7 +3,7 @@ minecraft_version = "1.21.1"
 neoforge = "21.1.227"
 
 # Mod properties
-version = "1.0.5"
+version = "2.0.0"
 maven-group = "com.github.debris"
 archives-name = "AE2-QoL-Client"
 mod_id="aeqc"
@@ -17,8 +17,9 @@ guideme="21.1.15"
 ae2="19.2.17"
 ae2jei="5748513"
 glodium="5821676"
-extendedae="6863556"
+extendedae="7727948"
 ae2wt ="19.2.0"
+toms_storage="1.21-2.3.0"
 
 # Gradle plugin
 architectury-loom = "1.10-SNAPSHOT"
@@ -36,6 +37,7 @@ ae2jei = {group = "curse.maven", name  = "ae2-jei-integration-1074338", version.
 glodium= {group="curse.maven", name="glodium-957920",version.ref="glodium"}
 extendedae= {group="curse.maven", name="ex-pattern-provider-892005",version.ref="extendedae"}
 ae2wt = {group="de.mari_023", name="ae2wtlib_api",version.ref= "ae2wt" }
+toms_storage ={group="maven.modrinth", name="toms-storage",version.ref= "toms_storage" }
 
 [plugins]
 architectury-loom = { id = "dev.architectury.loom", version.ref = "architectury-loom" }

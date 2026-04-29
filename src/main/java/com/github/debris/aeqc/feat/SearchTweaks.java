@@ -85,7 +85,6 @@ public class SearchTweaks {
 
 
         if (ExtendedAEReference.PatternAccessTerminals.stream().anyMatch(x -> x.equals(key))) {
-//            return widgets.get("search_out");// 1.20.1
             return widgets.get("search");
         }
 

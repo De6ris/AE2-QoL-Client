@@ -10,7 +10,7 @@
 
 ## 前置依赖
 
-mafglib, ae2, jei
+mafglib, ae2, jei, ae2jeiintegration
 
 ---
 

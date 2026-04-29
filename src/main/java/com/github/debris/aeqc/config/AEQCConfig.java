@@ -28,26 +28,26 @@ public class AEQCConfig implements IConfigHandler {
     private static final Path FILE_PATH = Platform.getConfigDir().resolve(AEQC.MOD_ID + ".json");
 
     // value
-    public static final ConfigBoolean PatternPlaceHolder = ofBoolean("样板占位符", true, "假合成");
-    public static final ConfigString PlaceHolderItem = ofString("占位符物品", "minecraft:paper");
-    public static final ConfigBoolean AutoBlankPatternRestock = ofBoolean("自动补充空白样板", true, "样板编码终端");
-    public static final ConfigBoolean DebugMode = ofBoolean("调试模式", false);
+    public static final ConfigBoolean PatternPlaceholder = ofBoolean("pattern_placeholder", true);
+    public static final ConfigString PlaceholderItem = ofString("placeholder_item", "minecraft:paper");
+    public static final ConfigBoolean AutoBlankPatternRestock = ofBoolean("auto_blank_pattern_restock", true);
+    public static final ConfigBoolean DebugMode = ofBoolean("debug_mode", false);
 
 
     // integration
-    public static final ConfigBoolean GTConvertMoltenAlloy = ofBoolean("GT转化熔融合金", true, "对应的锭");
-    public static final ConfigBoolean GTConvertHotIngot = ofBoolean("GT转化热锭", true, "对应的锭");
+    public static final ConfigBoolean GTConvertMoltenAlloy = ofBoolean("gt_convert_molten_alloy", true);
+    public static final ConfigBoolean GTConvertHotIngot = ofBoolean("gt_convert_hot_ingot", true);
 
 
     // hotkey
-    public static final ConfigHotkey OpenConfigUI = ofHotkey("打开配置界面", "C,Q");
+    public static final ConfigHotkey OpenConfigUI = ofHotkey("open_config_ui", "C,Q");
 
-    public static final ConfigHotkey FastSearch = ofHotkey("快速搜索", "F", KeybindSettings.GUI);
-    public static final ConfigHotkey FastAutoCraftGui = ofHotkey("快速下单", "BUTTON_3", KeybindSettings.GUI);
-    public static final ConfigHotkey ClearSearch = ofHotkey("清空搜索", "C", KeybindSettings.GUI);
-    public static final ConfigHotkey ModifierSkipPatternMerging = ofHotkey("跳过样板自动合并", "LEFT_CONTROL", KeybindSettings.MODIFIER_GUI, "保留样板堆叠为jei中原状\n用于GT装配线等");
-    public static final ConfigHotkey FastPullOne = ofHotkey("快速拉取一个物品", "HOME", KeybindSettings.GUI);
-    public static final ConfigHotkey FastPullStack = ofHotkey("快速拉取一组物品", "END", KeybindSettings.GUI);
+    public static final ConfigHotkey FastSearch = ofHotkey("fast_search", "F", KeybindSettings.GUI);
+    public static final ConfigHotkey FastAutoCraft = ofHotkey("fast_auto_craft", "BUTTON_3", KeybindSettings.GUI);
+    public static final ConfigHotkey ClearSearch = ofHotkey("clear_search", "C", KeybindSettings.GUI);
+    public static final ConfigHotkey ModifierSkipPatternMerging = ofHotkey("skip_pattern_merging", "LEFT_CONTROL", KeybindSettings.MODIFIER_GUI);
+    public static final ConfigHotkey FastPullOne = ofHotkey("fast_pull_one", "HOME", KeybindSettings.GUI);
+    public static final ConfigHotkey FastPullStack = ofHotkey("fast_pull_stack", "END", KeybindSettings.GUI);
 
     public static final List<IConfigBase> ALL_CONFIGS;
 
@@ -91,8 +91,8 @@ public class AEQCConfig implements IConfigHandler {
 
     static {
         Values = ImmutableList.of(
-                PatternPlaceHolder,
-                PlaceHolderItem,
+                PatternPlaceholder,
+                PlaceholderItem,
                 AutoBlankPatternRestock,
                 DebugMode
         );
@@ -100,7 +100,7 @@ public class AEQCConfig implements IConfigHandler {
         Hotkey = ImmutableList.of(
                 OpenConfigUI,
                 FastSearch,
-                FastAutoCraftGui,
+                FastAutoCraft,
                 ClearSearch,
                 ModifierSkipPatternMerging,
                 FastPullOne,

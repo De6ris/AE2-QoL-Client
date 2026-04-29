@@ -5,6 +5,7 @@ import fi.dy.masa.malilib.config.options.*;
 import fi.dy.masa.malilib.hotkeys.KeybindSettings;
 
 public class ConfigFactory {
+    private static final String TRANSLATION_PREFIX = "aeqc.config";
     private static final String DEFAULT_COMMENT = "no comment";
 
     static ConfigStringList ofStringList(String name, ImmutableList<String> defaultValue) {
@@ -12,7 +13,7 @@ public class ConfigFactory {
     }
 
     static ConfigStringList ofStringList(String name, ImmutableList<String> defaultValue, String comment) {
-        return new ConfigStringList(name, defaultValue, comment);
+        return new ConfigStringList(name, defaultValue, comment).apply(TRANSLATION_PREFIX);
     }
 
     static ConfigInteger ofInteger(String name, int defaultValue, int min, int max) {
@@ -20,7 +21,7 @@ public class ConfigFactory {
     }
 
     static ConfigInteger ofInteger(String name, int defaultValue, int min, int max, String comment) {
-        return new ConfigInteger(name, defaultValue, min, max, comment);
+        return new ConfigInteger(name, defaultValue, min, max, comment).apply(TRANSLATION_PREFIX);
     }
 
     static ConfigBoolean ofBoolean(String name, boolean defaultValue) {
@@ -28,7 +29,7 @@ public class ConfigFactory {
     }
 
     static ConfigBoolean ofBoolean(String name, boolean defaultValue, String comment) {
-        return new ConfigBoolean(name, defaultValue, comment);
+        return new ConfigBoolean(name, defaultValue, comment).apply(TRANSLATION_PREFIX);
     }
 
     static ConfigHotkey ofHotkey(String name, String defaultKey) {
@@ -40,11 +41,11 @@ public class ConfigFactory {
     }
 
     static ConfigHotkey ofHotkey(String name, String defaultKey, KeybindSettings settings) {
-        return new ConfigHotkey(name, defaultKey, settings, DEFAULT_COMMENT);
+        return ofHotkey(name, defaultKey, settings, DEFAULT_COMMENT);
     }
 
     static ConfigHotkey ofHotkey(String name, String defaultKey, KeybindSettings settings, String comment) {
-        return new ConfigHotkey(name, defaultKey, settings, comment);
+        return new ConfigHotkey(name, defaultKey, settings, comment).apply(TRANSLATION_PREFIX);
     }
 
     static ConfigBooleanHotkeyed ofBooleanHotkeyed(String name, boolean defaultValue, String defaultKey) {
@@ -52,14 +53,14 @@ public class ConfigFactory {
     }
 
     static ConfigBooleanHotkeyed ofBooleanHotkeyed(String name, boolean defaultValue, String defaultKey, String comment) {
-        return new ConfigBooleanHotkeyed(name, defaultValue, defaultKey, comment);
+        return ofBooleanHotkeyed(name, defaultValue, defaultKey, KeybindSettings.DEFAULT, comment);
     }
 
     static ConfigBooleanHotkeyed ofBooleanHotkeyed(String name, boolean defaultValue, String defaultKey, KeybindSettings settings, String comment) {
-        return new ConfigBooleanHotkeyed(name, defaultValue, defaultKey, settings, comment, name);
+        return new ConfigBooleanHotkeyed(name, defaultValue, defaultKey, settings, comment, name).apply(TRANSLATION_PREFIX);
     }
 
     static ConfigString ofString(String name, String defaultValue) {
-        return new ConfigString(name, defaultValue, DEFAULT_COMMENT);
+        return new ConfigString(name, defaultValue, DEFAULT_COMMENT).apply(TRANSLATION_PREFIX);
     }
 }
