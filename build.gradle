@@ -1,12 +1,10 @@
-import java.text.SimpleDateFormat
-
 plugins {
     id "dev.architectury.loom" version "1.10-SNAPSHOT"
     id "maven-publish"
 }
 
-base.archivesName = project.archives_base_name
-version = "${project.mod_version}-mc${project.minecraft_version}-" + new SimpleDateFormat("yyyyMMdd").format(new Date())
+base.archivesName = "${project.archives_base_name}-mc${project.minecraft_version}"
+version = "${project.mod_version}"
 group = project.maven_group
 
 loom {
@@ -41,26 +39,21 @@ dependencies {
 
     modImplementation "maven.modrinth:mafglib:${project.malilib_version}"
 
-    // ae2
-    modImplementation "appeng:appliedenergistics2-forge:${ae2_version}"
     modImplementation "org.appliedenergistics:guideme:${guideme_version}"
+    modImplementation "appeng:appliedenergistics2-forge:${ae2_version}"
 
-    // extendedAE
     modImplementation "curse.maven:glodium-957920:${glodium_version}"
     modImplementation "curse.maven:ex-pattern-provider-892005:7005572"
 
-    // ae2wt
     modCompileOnly "curse.maven:applied-energistics-2-wireless-terminals-459929:${wireless_terminals_version}"
 
-    // jei
     modCompileOnly "mezz.jei:jei-${minecraft_version}-forge:${jei_version}"
     modRuntimeOnly "mezz.jei:jei-${minecraft_version}-forge:${jei_version}"
-//    modImplementation "mezz.jei:jei-${minecraft_version}-forge:${jei_version}"
 
-    // tom
     modCompileOnly "com.tom5454.toms_storage:TomsStorage-120:${tom_version}"
 
-    // gtceu
+    modCompileOnly "curse.maven:refined-storage-243076:${refined_storage_version}"
+
     modCompileOnly "curse.maven:gregtechceu-modern-890405:${gregtech_version}"
 //    modImplementation "curse.maven:ldlib-626676:${ldlib_version}"
 //    modImplementation "curse.maven:configuration-444699:4710266"

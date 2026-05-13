@@ -22,7 +22,7 @@ mafglib, ae2, jei
     * ME终端, ME合成终端, 样板编码终端
     * 样板管理终端
     * 扩展样板管理终端(Extended AE)
-    * tom存储
+    * tom存储, rs合成终端
 * 中键下单jei材料
 * 有无线终端时, 对世界中的方块中键下单(需按住ctrl)
 * 对jei中物品按HOME键取出1个, END键取出1组

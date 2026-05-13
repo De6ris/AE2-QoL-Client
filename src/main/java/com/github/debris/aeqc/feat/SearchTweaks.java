@@ -5,7 +5,6 @@ import appeng.client.gui.AEBaseScreen;
 import appeng.client.gui.me.common.MEStorageScreen;
 import appeng.client.gui.me.patternaccess.PatternAccessTermScreen;
 import com.github.debris.aeqc.reference.ExtendedAEReference;
-import com.github.debris.aeqc.reference.TomStorageReference;
 import com.github.debris.aeqc.util.AccessUtil;
 import com.github.debris.aeqc.util.JeiUtil;
 import net.minecraft.client.Minecraft;
@@ -62,9 +61,9 @@ public class SearchTweaks {
             }
         }
 
-        EditBox modWidget = findTextField_mod(screen, key);
-        if (modWidget != null) {
-            return modWidget;
+        EditBox vanillaWidget = findTextField_vanilla(screen, key);
+        if (vanillaWidget != null) {
+            return vanillaWidget;
         }
 
         return null;
@@ -92,15 +91,12 @@ public class SearchTweaks {
     }
 
     @Nullable
-    private static EditBox findTextField_mod(AbstractContainerScreen<?> screen, @Nullable ResourceLocation key) {
-        if (TomStorageReference.Terminals.stream().anyMatch(x -> x.equals(key))) {
-            return screen.children().stream()
-                    .filter(x -> x instanceof EditBox)
-                    .map(x -> (EditBox) x)
-                    .findFirst()
-                    .orElse(null);
-        }
-        return null;
+    private static EditBox findTextField_vanilla(AbstractContainerScreen<?> screen, @Nullable ResourceLocation key) {
+        return screen.children().stream()
+                .filter(x -> x instanceof EditBox)
+                .map(x -> (EditBox) x)
+                .findFirst()
+                .orElse(null);
     }
 
     private static Map<String, AbstractWidget> getWidgets(AEBaseScreen<?> screen) {
