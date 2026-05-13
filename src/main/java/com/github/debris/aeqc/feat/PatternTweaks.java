@@ -16,7 +16,7 @@ public class PatternTweaks {
     public static boolean SKIP_MERGING = false;
 
     public static List<GenericStack> onTransfer(List<GenericStack> original, @Nullable Recipe<?> recipe, IRecipeSlotsView slotsView) {
-        if (AEQCConfig.PatternPlaceHolder.getBooleanValue() && original.isEmpty()) {
+        if (AEQCConfig.PatternPlaceholder.getBooleanValue() && original.isEmpty()) {
             return PatternPlaceHolder.createOutput(slotsView);
         }
 

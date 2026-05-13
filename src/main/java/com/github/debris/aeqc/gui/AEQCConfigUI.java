@@ -1,11 +1,13 @@
 package com.github.debris.aeqc.gui;
 
 import com.github.debris.aeqc.config.AEQCConfig;
+import com.github.debris.aeqc.localization.ConfigScreenText;
 import fi.dy.masa.malilib.config.IConfigBase;
 import fi.dy.masa.malilib.gui.GuiConfigsBase;
 import fi.dy.masa.malilib.gui.button.ButtonBase;
 import fi.dy.masa.malilib.gui.button.ButtonGeneric;
 import fi.dy.masa.malilib.gui.button.IButtonActionListener;
+import fi.dy.masa.malilib.util.StringUtils;
 
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class AEQCConfigUI extends GuiConfigsBase {
     private static Tab tab = Tab.ALL;
 
     public AEQCConfigUI() {
-        super(10, 50, MOD_NAME, null, "aeqc.gui.title.configs", MOD_NAME, MOD_VERSION);
+        super(10, 50, MOD_NAME, null, ConfigScreenText.TITLE.getTranslationKey(), MOD_NAME, MOD_VERSION);
     }
 
     @Override
@@ -33,7 +35,7 @@ public class AEQCConfigUI extends GuiConfigsBase {
     }
 
     private int createButton(int x, int y, int width, Tab tab) {
-        ButtonGeneric button = new ButtonGeneric(x, y, width, 20, tab.getDisplayName());
+        ButtonGeneric button = new ButtonGeneric(x, y, width, 20, StringUtils.translate(tab.getTranslationKey()));
         button.setEnabled(AEQCConfigUI.tab != tab);
         this.addButton(button, new ButtonListener(tab, this));
 
@@ -67,20 +69,20 @@ public class AEQCConfigUI extends GuiConfigsBase {
     }
 
     public enum Tab {
-        ALL("全部"),
-        VALUE("值"),
-        INTEGRATION("联动"),
-        HOTKEY("热键"),
+        ALL(ConfigScreenText.TAB_ALL.getTranslationKey()),
+        VALUE(ConfigScreenText.TAB_VALUE.getTranslationKey()),
+        INTEGRATION(ConfigScreenText.TAB_INTEGRATION.getTranslationKey()),
+        HOTKEY(ConfigScreenText.TAB_HOTKEY.getTranslationKey()),
         ;
 
-        private final String name;
+        private final String key;
 
         Tab(String str) {
-            name = str;
+            key = str;
         }
 
-        public String getDisplayName() {
-            return this.name;
+        public String getTranslationKey() {
+            return this.key;
         }
     }
 }

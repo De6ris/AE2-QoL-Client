@@ -22,7 +22,7 @@ public class PatternPlaceHolder {
         if (first.size() != 1) return List.of();
 
         GenericStack mainBlock = first.get(0);
-        Item item = ItemUtil.parseItem(AEQCConfig.PlaceHolderItem.getStringValue());
+        Item item = ItemUtil.parseItem(AEQCConfig.PlaceholderItem.getStringValue());
         ItemStack placeHolder = new ItemStack(item == Items.AIR ? Items.PAPER : item);
         placeHolder.setHoverName(mainBlock.what().getDisplayName());
 
