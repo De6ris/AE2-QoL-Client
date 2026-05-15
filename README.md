@@ -22,7 +22,7 @@ mafglib, ae2, jei, ae2jeiintegration
     * ME终端, ME合成终端, 样板编码终端
     * 样板管理终端
     * 扩展样板管理终端(Extended AE)
-    * tom存储
+    * 其它模组的终端, 至少包括tom存储, rs, 新生魔艺
 * 中键下单jei材料
 * 对jei中物品按HOME键取出1个, END键取出1组
 * 在下单失败菜单添加侧边按钮, 允许收藏所有缺失材料

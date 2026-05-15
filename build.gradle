@@ -27,20 +27,18 @@ dependencies {
     modImplementation libs.jei
     modCompileOnly libs.gtceu
 
-    // ae2
     modImplementation libs.guideme
     modImplementation libs.ae2
     modImplementation libs.ae2jei
 
-    // extendedAE
     modCompileOnly libs.glodium
     modCompileOnly libs.extendedae
 
-    // ae2wt
     modCompileOnly libs.ae2wt
 
-    // tom
-    modCompileOnly libs.toms.storage
+    modCompileOnly(libs.ars.nouveau) {
+        exclude group: "*", module: "*"
+    }
 }
 
 processResources {

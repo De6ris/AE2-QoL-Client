@@ -4,8 +4,8 @@ import appeng.api.stacks.GenericStack;
 import appeng.client.gui.AEBaseScreen;
 import appeng.client.gui.me.common.MEStorageScreen;
 import appeng.client.gui.me.patternaccess.PatternAccessTermScreen;
+import com.github.debris.aeqc.reference.ArsNouveauReference;
 import com.github.debris.aeqc.reference.ExtendedAEReference;
-import com.github.debris.aeqc.reference.TomStorageReference;
 import com.github.debris.aeqc.util.AccessUtil;
 import com.github.debris.aeqc.util.JeiUtil;
 import net.minecraft.client.Minecraft;
@@ -22,6 +22,8 @@ import java.util.Map;
 import java.util.function.Function;
 
 public class SearchTweaks {
+    public static boolean CancelInput = false;
+
     public static boolean searchHovered(Minecraft client) {
         return execute(client, textField -> {
             GenericStack stack = JeiUtil.getHoveredStack();
@@ -42,18 +44,27 @@ public class SearchTweaks {
     private static boolean execute(Minecraft client, Function<EditBox, Boolean> action) {
         Screen screen = client.screen;
         if (!(screen instanceof AbstractContainerScreen<?> containerScreen)) return false;
-        EditBox textField = findTextField(containerScreen);
+
+        MenuType<?> menuType = AccessUtil.getMenuType(containerScreen.getMenu());
+        ResourceLocation key = menuType != null ? BuiltInRegistries.MENU.getKey(menuType) : null;
+
+        EditBox textField = findTextField(containerScreen, key);
         if (textField == null) return false;
         if (textField.isFocused()) return false;
 
-        return action.apply(textField);
+        Boolean result = action.apply(textField);
+
+        // patch for ars nouveau
+        if (result && ArsNouveauReference.STORAGE_LECTERN.equals(key)) {
+            CancelInput = true;
+        }
+
+        return result;
     }
 
     @SuppressWarnings("RedundantIfStatement")
     @Nullable
-    private static EditBox findTextField(AbstractContainerScreen<?> screen) {
-        MenuType<?> menuType = AccessUtil.getMenuType(screen.getMenu());
-        ResourceLocation key = menuType != null ? BuiltInRegistries.MENU.getKey(menuType) : null;
+    private static EditBox findTextField(AbstractContainerScreen<?> screen, ResourceLocation key) {
 
         if (screen instanceof AEBaseScreen<?> aeBaseScreen) {
             AbstractWidget widget = findTextField_ae(aeBaseScreen, key);
@@ -62,9 +73,9 @@ public class SearchTweaks {
             }
         }
 
-        EditBox modWidget = findTextField_mod(screen, key);
-        if (modWidget != null) {
-            return modWidget;
+        EditBox vanillaWidget = findTextField_vanilla(screen, key);
+        if (vanillaWidget != null) {
+            return vanillaWidget;
         }
 
         return null;
@@ -92,15 +103,12 @@ public class SearchTweaks {
     }
 
     @Nullable
-    private static EditBox findTextField_mod(AbstractContainerScreen<?> screen, @Nullable ResourceLocation key) {
-        if (TomStorageReference.Terminals.stream().anyMatch(x -> x.equals(key))) {
-            return screen.children().stream()
-                    .filter(x -> x instanceof EditBox)
-                    .map(x -> (EditBox) x)
-                    .findFirst()
-                    .orElse(null);
-        }
-        return null;
+    private static EditBox findTextField_vanilla(AbstractContainerScreen<?> screen, @Nullable ResourceLocation key) {
+        return screen.children().stream()
+                .filter(x -> x instanceof EditBox)
+                .map(x -> (EditBox) x)
+                .findFirst()
+                .orElse(null);
     }
 
     private static Map<String, AbstractWidget> getWidgets(AEBaseScreen<?> screen) {

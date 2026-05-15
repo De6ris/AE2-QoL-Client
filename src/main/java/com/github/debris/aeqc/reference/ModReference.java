@@ -5,6 +5,7 @@ import com.github.debris.aeqc.util.Platform;
 public class ModReference {
     public static final String GTCEU = "gtceu";
     public static final String TomStorage = "toms_storage";
+    public static final String ArsNouveau = "ars_nouveau";
 
     public static boolean has(String modid) {
         return Platform.hasMod(modid);

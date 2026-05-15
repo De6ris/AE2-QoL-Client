@@ -5,7 +5,7 @@ import com.github.debris.aeqc.config.AEQCConfig;
 import fi.dy.masa.malilib.hotkeys.IKeybindManager;
 import fi.dy.masa.malilib.hotkeys.IKeybindProvider;
 
-public class InputHandlerImpl implements IKeybindProvider {
+public class KeybindProviderImpl implements IKeybindProvider {
     @Override
     public void addKeysToMap(IKeybindManager iKeybindManager) {
         AEQCConfig.Hotkey.forEach(x -> iKeybindManager.addKeybindToMap(x.getKeybind()));

@@ -15,7 +15,7 @@ public class InitHandlerImpl implements IInitializationHandler {
     public void registerModHandlers() {
         ConfigManager.getInstance().registerConfigHandler(AEQC.MOD_ID, AEQCConfig.getInstance());
 
-        InputEventHandler.getKeybindManager().registerKeybindProvider(new InputHandlerImpl());
+        InputEventHandler.getKeybindManager().registerKeybindProvider(new KeybindProviderImpl());
 
         Callbacks.init(Minecraft.getInstance());
 

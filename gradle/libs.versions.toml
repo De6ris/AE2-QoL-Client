@@ -3,23 +3,24 @@ minecraft_version = "1.21.1"
 neoforge = "21.1.227"
 
 # Mod properties
-version = "2.0.0"
+version = "2.0.1"
 maven-group = "com.github.debris"
 archives-name = "AE2-QoL-Client"
-mod_id="aeqc"
-mod_author="Debris"
+mod_id = "aeqc"
+mod_author = "Debris"
 
 # Mod dependencies
 mafglib = "0.3.3-mc1.21.1"
-jei="19.27.0.340"
-gtceu="7424649"
-guideme="21.1.15"
-ae2="19.2.17"
-ae2jei="5748513"
-glodium="5821676"
-extendedae="7727948"
-ae2wt ="19.2.0"
-toms_storage="1.21-2.3.0"
+jei = "19.27.0.340"
+gtceu = "7424649"
+guideme = "21.1.15"
+ae2 = "19.2.17"
+ae2jei = "5748513"
+glodium = "5821676"
+extendedae = "7727948"
+ae2wt = "19.2.0"
+toms_storage = "1.21-2.3.0"
+ars_nouveau = "5.11.4.1311"
 
 # Gradle plugin
 architectury-loom = "1.10-SNAPSHOT"
@@ -29,15 +30,17 @@ minecraft = { group = "com.mojang", name = "minecraft", version.ref = "minecraft
 
 neoforge = { group = "net.neoforged", name = "neoforge", version.ref = "neoforge" }
 mafglib = { group = "maven.modrinth", name = "mafglib", version.ref = "mafglib" }
-jei = {group = "mezz.jei", name  = "jei-1.21.1-neoforge", version.ref="jei"}
-gtceu = {group = "curse.maven", name  = "gregtechceu-modern-890405", version.ref="gtceu"}
-guideme= {group="org.appliedenergistics", name="guideme",version.ref="guideme"}
-ae2= {group="org.appliedenergistics", name="appliedenergistics2",version.ref="ae2"}
-ae2jei = {group = "curse.maven", name  = "ae2-jei-integration-1074338", version.ref="ae2jei"}
-glodium= {group="curse.maven", name="glodium-957920",version.ref="glodium"}
-extendedae= {group="curse.maven", name="ex-pattern-provider-892005",version.ref="extendedae"}
-ae2wt = {group="de.mari_023", name="ae2wtlib_api",version.ref= "ae2wt" }
-toms_storage ={group="maven.modrinth", name="toms-storage",version.ref= "toms_storage" }
+jei = { group = "mezz.jei", name = "jei-1.21.1-neoforge", version.ref = "jei" }
+gtceu = { group = "curse.maven", name = "gregtechceu-modern-890405", version.ref = "gtceu" }
+guideme = { group = "org.appliedenergistics", name = "guideme", version.ref = "guideme" }
+ae2 = { group = "org.appliedenergistics", name = "appliedenergistics2", version.ref = "ae2" }
+ae2jei = { group = "curse.maven", name = "ae2-jei-integration-1074338", version.ref = "ae2jei" }
+glodium = { group = "curse.maven", name = "glodium-957920", version.ref = "glodium" }
+extendedae = { group = "curse.maven", name = "ex-pattern-provider-892005", version.ref = "extendedae" }
+ae2wt = { group = "de.mari_023", name = "ae2wtlib_api", version.ref = "ae2wt" }
+toms_storage = { group = "maven.modrinth", name = "toms-storage", version.ref = "toms_storage" }
+ars_nouveau = { group = "com.hollingsworth.ars_nouveau", name = "ars_nouveau-1.21.1", version.ref = "ars_nouveau" }
+
 
 [plugins]
 architectury-loom = { id = "dev.architectury.loom", version.ref = "architectury-loom" }
