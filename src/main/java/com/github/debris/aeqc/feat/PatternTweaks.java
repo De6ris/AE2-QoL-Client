@@ -15,6 +15,7 @@ import java.util.List;
 public class PatternTweaks {
     public static boolean SKIP_MERGING = false;
 
+    @SuppressWarnings("RedundantIfStatement")
     public static List<GenericStack> onTransfer(List<GenericStack> original, @Nullable Recipe<?> recipe, IRecipeSlotsView slotsView) {
         if (AEQCConfig.PatternPlaceholder.getBooleanValue() && original.isEmpty()) {
             return PatternPlaceHolder.createOutput(slotsView);
@@ -30,6 +31,17 @@ public class PatternTweaks {
             }
             if (AEQCConfig.GTConvertHotIngot.getBooleanValue() && id.equals(GTCEUReference.ELECTRIC_BLAST_FURNACE)) {
                 return PatternConverter.convertHotIngotToIngot(original);
+            }
+        }
+
+        if (recipe == null && ModReference.IS_GTCEU_1_4_4.get()) {
+            if (AEQCConfig.GTConvertMoltenAlloy.getBooleanValue()) {
+                List<GenericStack> converted = PatternConverter.convertMoltenAlloyToIngot(original);
+                if (converted != original) return converted;
+            }
+            if (AEQCConfig.GTConvertHotIngot.getBooleanValue()) {
+                List<GenericStack> converted = PatternConverter.convertHotIngotToIngot(original);
+                if (converted != original) return converted;
             }
         }
 
