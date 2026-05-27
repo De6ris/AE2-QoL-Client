@@ -20,6 +20,15 @@ public class Platform {
         return ModList.get().isLoaded(modid);
     }
 
+    public static String getModVersion(String modid) {
+        return ModList.get()
+                .getModContainerById(modid)
+                .orElseThrow()
+                .getModInfo()
+                .getVersion()
+                .toString();
+    }
+
     @SuppressWarnings("removal")
     public static ResourceLocation identifier(String namespace, String path) {
         return new ResourceLocation(namespace, path);
