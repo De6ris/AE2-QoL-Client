@@ -27,6 +27,9 @@ public class BlankPatternRestock {
         GridInventoryEntry entry = optional.get();
         if (entry.getStoredAmount() == 0) return;
 
+        // may be holding encoded pattern
+        if (InventoryUtil.isHoldingItem()) return;
+
         menu.handleInteraction(entry.getSerial(), InventoryAction.PICKUP_OR_SET_DOWN);
         InventoryUtil.leftClick(slot);
 

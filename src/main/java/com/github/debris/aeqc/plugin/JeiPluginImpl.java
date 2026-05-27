@@ -7,6 +7,7 @@ import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 @JeiPlugin
 public class JeiPluginImpl implements IModPlugin {
@@ -16,12 +17,12 @@ public class JeiPluginImpl implements IModPlugin {
     }
 
     @Override
-    public ResourceLocation getPluginUid() {
+    public @NotNull ResourceLocation getPluginUid() {
         return ID;
     }
 
     @Override
-    public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
+    public void onRuntimeAvailable(@NotNull IJeiRuntime jeiRuntime) {
         JeiUtil.jeiRuntime = jeiRuntime;
     }
 }
