@@ -11,14 +11,23 @@ import net.minecraft.world.item.crafting.Recipe;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.BiConsumer;
 
 public class PatternTweaks {
     public static boolean SKIP_MERGING = false;
 
-    @SuppressWarnings("RedundantIfStatement")
-    public static List<GenericStack> onTransfer(List<GenericStack> original, @Nullable Recipe<?> recipe, IRecipeSlotsView slotsView) {
-        if (AEQCConfig.PatternPlaceholder.getBooleanValue() && original.isEmpty()) {
-            return PatternPlaceHolder.createOutput(slotsView);
+    public static void onTransfer(@Nullable Recipe<?> recipe,
+                                  IRecipeSlotsView slotsView,
+                                  List<List<GenericStack>> input,
+                                  List<GenericStack> output,
+                                  BiConsumer<List<List<GenericStack>>, List<GenericStack>> original
+    ) {
+        if (AEQCConfig.GTRemoveCircuit.getBooleanValue()) {
+            input = PatternConverter.removeCircuit(input);
+        }
+
+        if (AEQCConfig.PatternPlaceholder.getBooleanValue() && output.isEmpty()) {
+            output = PatternPlaceHolder.createOutput(slotsView);
         }
 
         if (recipe != null
@@ -27,24 +36,23 @@ public class PatternTweaks {
         ) {
             ResourceLocation id = GTCEUAccess.getId(recipe.getType());
             if (AEQCConfig.GTConvertMoltenAlloy.getBooleanValue() && id.equals(GTCEUReference.ALLOY_BLAST_SMELTER)) {
-                return PatternConverter.convertMoltenAlloyToIngot(original);
+                output = PatternConverter.convertMoltenAlloyToIngot(output);
             }
             if (AEQCConfig.GTConvertHotIngot.getBooleanValue() && id.equals(GTCEUReference.ELECTRIC_BLAST_FURNACE)) {
-                return PatternConverter.convertHotIngotToIngot(original);
+                output = PatternConverter.convertHotIngotToIngot(output);
             }
         }
 
         if (recipe == null && ModReference.IS_GTCEU_1_4_4.get()) {
             if (AEQCConfig.GTConvertMoltenAlloy.getBooleanValue()) {
-                List<GenericStack> converted = PatternConverter.convertMoltenAlloyToIngot(original);
-                if (converted != original) return converted;
+                output = PatternConverter.convertMoltenAlloyToIngot(output);
             }
             if (AEQCConfig.GTConvertHotIngot.getBooleanValue()) {
-                List<GenericStack> converted = PatternConverter.convertHotIngotToIngot(original);
-                if (converted != original) return converted;
+                output = PatternConverter.convertHotIngotToIngot(output);
             }
         }
 
-        return original;
+
+        original.accept(input, output);
     }
 }

@@ -17,6 +17,8 @@
   "aeqc.config.comment.gt_convert_molten_alloy": "To corresponding ingot",
   "aeqc.config.name.gt_convert_hot_ingot": "GT Convert Hot Ingot",
   "aeqc.config.comment.gt_convert_hot_ingot": "To corresponding ingot",
+  "aeqc.config.name.gt_remove_circuit": "GT Remove Circuit",
+  "aeqc.config.comment.gt_remove_circuit": "no comment",
   "aeqc.config.name.open_config_ui": "Open Config UI",
   "aeqc.config.comment.open_config_ui": "no comment",
   "aeqc.config.name.fast_search": "Fast Search",

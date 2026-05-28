@@ -17,6 +17,8 @@
   "aeqc.config.comment.gt_convert_molten_alloy": "对应的锭",
   "aeqc.config.name.gt_convert_hot_ingot": "GT转换热锭",
   "aeqc.config.comment.gt_convert_hot_ingot": "对应的锭",
+  "aeqc.config.name.gt_remove_circuit": "GT去除电路",
+  "aeqc.config.comment.gt_remove_circuit": "no comment",
   "aeqc.config.name.open_config_ui": "打开配置屏幕",
   "aeqc.config.comment.open_config_ui": "no comment",
   "aeqc.config.name.fast_search": "快速搜索",

@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.material.Fluid;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PatternConverter {
@@ -42,6 +43,7 @@ public class PatternConverter {
         return original;
     }
 
+    @SuppressWarnings("deprecation")
     public static List<GenericStack> convertHotIngotToIngot(List<GenericStack> original) {
         if (original.size() != 1) return original;
         GenericStack stack = original.get(0);
@@ -60,6 +62,29 @@ public class PatternConverter {
             if (genericStack == null) return original;
 
             return List.of(genericStack);
+        }
+        return original;
+    }
+
+    @SuppressWarnings("deprecation")
+    public static List<List<GenericStack>> removeCircuit(List<List<GenericStack>> original) {
+        int circuit = -1;
+        for (int i = 0; i < original.size(); i++) {
+            List<GenericStack> list = original.get(i);
+            if (list.size() != 1) continue;
+            GenericStack stack = list.get(0);
+            AEKey key = stack.what();
+            if (key instanceof AEItemKey itemKey) {
+                ResourceLocation identifier = BuiltInRegistries.ITEM.getKey(itemKey.getItem());
+                if (identifier.equals(GTCEUReference.PROGRAMMED_CIRCUIT)) {
+                    circuit = i;
+                    break;
+                }
+            }
+        }
+        if (circuit != -1) {
+            original = new ArrayList<>(original);
+            original.remove(circuit);
         }
         return original;
     }
