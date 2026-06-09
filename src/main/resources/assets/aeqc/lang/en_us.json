@@ -5,6 +5,7 @@
   "aeqc.gui.tab.integration": "Integration",
   "aeqc.gui.tab.hotkey": "Hotkey",
   "aeqc.gui.bookmark_missing": "Bookmark Missing",
+  "aeqc.gui.skip_merging": "Press %s to skip merging",
   "aeqc.config.name.pattern_placeholder": "Pattern Placeholder",
   "aeqc.config.comment.pattern_placeholder": "For pseudo auto crafting",
   "aeqc.config.name.placeholder_item": "Placeholder Item",

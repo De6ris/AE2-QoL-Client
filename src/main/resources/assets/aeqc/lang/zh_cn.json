@@ -5,6 +5,7 @@
   "aeqc.gui.tab.integration": "联动",
   "aeqc.gui.tab.hotkey": "热键",
   "aeqc.gui.bookmark_missing": "收藏缺失项",
+  "aeqc.gui.skip_merging": "按住%s跳过合并",
   "aeqc.config.name.pattern_placeholder": "样板占位符",
   "aeqc.config.comment.pattern_placeholder": "假合成",
   "aeqc.config.name.placeholder_item": "占位符物品",
