@@ -31,12 +31,14 @@ public class AEQCConfig implements IConfigHandler {
     public static final ConfigBoolean PatternPlaceholder = ofBoolean("pattern_placeholder", true);
     public static final ConfigString PlaceholderItem = ofString("placeholder_item", "minecraft:paper");
     public static final ConfigBoolean AutoBlankPatternRestock = ofBoolean("auto_blank_pattern_restock", true);
+    public static final ConfigBoolean RecipePull = ofBoolean("recipe_pull", false);// TODO
     public static final ConfigBoolean DebugMode = ofBoolean("debug_mode", false);
 
 
     // integration
     public static final ConfigBoolean GTConvertMoltenAlloy = ofBoolean("gt_convert_molten_alloy", true);
     public static final ConfigBoolean GTConvertHotIngot = ofBoolean("gt_convert_hot_ingot", true);
+    public static final ConfigBoolean GTRemoveCircuit = ofBoolean("gt_remove_circuit", true);
 
 
     // hotkey
@@ -85,7 +87,13 @@ public class AEQCConfig implements IConfigHandler {
 
     private static ImmutableList<IConfigBase> getIntegration() {
         ImmutableList.Builder<IConfigBase> builder = ImmutableList.builder();
-        if (ModReference.has(ModReference.GTCEU)) builder.add(GTConvertMoltenAlloy, GTConvertHotIngot);
+        if (ModReference.has(ModReference.GTCEU)) {
+            builder.add(
+                    GTConvertMoltenAlloy,
+                    GTConvertHotIngot,
+                    GTRemoveCircuit
+            );
+        }
         return builder.build();
     }
 
@@ -94,6 +102,7 @@ public class AEQCConfig implements IConfigHandler {
                 PatternPlaceholder,
                 PlaceholderItem,
                 AutoBlankPatternRestock,
+                RecipePull,
                 DebugMode
         );
         Integration = getIntegration();

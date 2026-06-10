@@ -4,6 +4,7 @@ import appeng.core.localization.LocalizationEnum;
 
 public enum TooltipText implements LocalizationEnum {
     BOOKMARK_MISSING("aeqc.gui.bookmark_missing", "Bookmark Missing"),
+    SKIP_MERGING("aeqc.gui.skip_merging", "Skip Merging")
     ;
 
     private final String key;

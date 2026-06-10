@@ -36,6 +36,7 @@ public class SearchTweaks {
 
     public static boolean clear(Minecraft client) {
         return execute(client, textField -> {
+            if (textField.getValue().isEmpty()) return false;
             textField.setValue("");
             return true;
         });
