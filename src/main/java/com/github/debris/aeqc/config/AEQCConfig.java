@@ -45,8 +45,7 @@ public class AEQCConfig implements IConfigHandler {
     public static final ConfigHotkey OpenConfigUI = ofHotkey("open_config_ui", "C,Q");
 
     public static final ConfigHotkey FastSearch = ofHotkey("fast_search", "F", KeybindSettings.GUI);
-    public static final ConfigHotkey FastAutoCraftGui = ofHotkey("fast_auto_craft_gui", "BUTTON_3", KeybindSettings.GUI);
-    public static final ConfigHotkey FastAutoCraftBlock = ofHotkey("fast_auto_craft_block", "LEFT_CONTROL,BUTTON_3", KeybindSettings.DEFAULT);
+    public static final ConfigHotkey FastAutoCraft = ofHotkey("fast_auto_craft", "BUTTON_3", KeybindSettings.GUI);
     public static final ConfigHotkey ClearSearch = ofHotkey("clear_search", "C", KeybindSettings.GUI);
     public static final ConfigHotkey ModifierSkipPatternMerging = ofHotkey("skip_pattern_merging", "LEFT_CONTROL", KeybindSettings.MODIFIER_GUI);
     public static final ConfigHotkey FastPullOne = ofHotkey("fast_pull_one", "HOME", KeybindSettings.GUI);
@@ -110,8 +109,7 @@ public class AEQCConfig implements IConfigHandler {
         Hotkey = ImmutableList.of(
                 OpenConfigUI,
                 FastSearch,
-                FastAutoCraftGui,
-                FastAutoCraftBlock,
+                FastAutoCraft,
                 ClearSearch,
                 ModifierSkipPatternMerging,
                 FastPullOne,
